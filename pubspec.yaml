@@ -1,0 +1,26 @@
+name: mobilesilksong
+description: "Um app Flutter sobre Hollow Knight: Silksong"
+publish_to: "none" # Mantém como projeto local
+version: 1.0.0+1
+
+environment:
+  sdk: ">=3.3.0 <4.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # Pacotes necessários
+  http: ^1.1.0          # Para requisições HTTP
+  url_launcher: ^6.1.10 # Para abrir links de fontes externas
+
+  # Pacotes opcionais de UI (se quiser melhorar a aparência)
+  cupertino_icons: ^1.0.5
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0
+
+flutter:
+  uses-material-design: true

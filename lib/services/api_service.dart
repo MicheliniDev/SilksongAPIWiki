@@ -1,0 +1,159 @@
+import 'dart:async';
+import '../models/timeline_item.dart';
+
+class ApiService {
+  // Dados locais da API (timelineItems)
+  final List<Map<String, dynamic>> _data = [
+    {
+      "id": "14",
+      "date": "2025-08-31",
+      "title": "Official Release Times and Price Confirmed",
+      "description":
+          "In an official update four days before release, Team Cherry confirmed the global launch times (7AM PT, 10AM ET, 4PM CEST, 11PM JST) and the final price: \$19.99 USD, €19.99, and ¥2300 JPY.",
+      "type": "Announcement",
+      "source": "https://x.com/TeamCherryGames/status/1962330350681735642",
+      "category": "release_date"
+    },
+    {
+      "id": "13",
+      "date": "2025-08-29",
+      "title": "Review Embargo Lifts to Widespread Acclaim",
+      "description":
+          "The review embargo for Hollow Knight: Silksong lifted. The game received universal acclaim, with many critics from major outlets awarding it perfect or near-perfect scores, praising its expanded world, fluid combat, and intricate design.",
+      "type": "News",
+      "source": "https://www.metacritic.com/game/hollow-knight-silksong/",
+      "category": "reception"
+    },
+    {
+      "id": "12",
+      "date": "2025-08-26",
+      "title": "Community and Industry Reaction",
+      "description":
+          "Following the release date announcement, the original Hollow Knight's player count on Steam surged to a new all-time high. Several indie games announced they were delaying their releases to avoid launching alongside Silksong.",
+      "type": "Community",
+      "source":
+          "https://www.gamespot.com/articles/the-latest-silksong-induced-game-delay-doesnt-hide-its-reasoning-in-new-trailer/1100-6534273/",
+      "category": "community"
+    },
+    {
+      "id": "11",
+      "date": "2025-08-22",
+      "title": "Kickstarter Backer Update",
+      "description":
+          "In their first Kickstarter update in six years, Team Cherry confirmed that original backers of Hollow Knight will receive a free copy of Silksong on PC or Nintendo Switch.",
+      "type": "Developer Update",
+      "source":
+          "https://www.gamespot.com/articles/first-hollow-knight-kickstarter-update-in-6-years-promises-backers-silksong-codes/1100-6534211/",
+      "category": "development"
+    },
+    {
+      "id": "10",
+      "date": "2025-08-21",
+      "title": "Official Release Date Announced!",
+      "description":
+          "Team Cherry released a new 'Release Trailer', officially announcing that Hollow Knight: Silksong will launch on September 4, 2025. The news ended years of intense community anticipation.",
+      "type": "Announcement",
+      "source": "https://www.youtube.com/watch?v=6XGeJwsUP9c",
+      "category": "release_date"
+    },
+    {
+      "id": "9",
+      "date": "2025-08-19",
+      "title": "Gamescom 2025 Playable Demo",
+      "description":
+          "Hollow Knight: Silksong was confirmed to have a playable demo at the Gamescom 2025 event, allowing press and attendees to get hands-on experience with the game.",
+      "type": "Gameplay Showcase",
+      "source":
+          "https://www.ign.com/articles/hollow-knight-silksong-we-played-it-gamescom-2025",
+      "category": "gameplay"
+    },
+    {
+      "id": "8",
+      "date": "2024-12-12",
+      "title": "The Game Awards (TGA) 2024",
+      "description":
+          "As in previous years, leading up to and during The Game Awards, many fans speculated and hoped for a release date announcement for Silksong, which did not happen.",
+      "type": "Community",
+      "source": "https://thegameawards.com/",
+      "category": "expectation"
+    },
+    {
+      "id": "7",
+      "date": "2024-09-25",
+      "title": "Nintendo Direct September 2024",
+      "description":
+          "During the Nintendo Direct Partner Showcase, the community widely hoped for an update on Silksong, despite no official indications.",
+      "type": "Community",
+      "source": "https://www.nintendo.com/us/nintendo-direct/",
+      "category": "expectation"
+    },
+    {
+      "id": "6",
+      "date": "2024-04-01",
+      "title": "April Fools' Day Joke and Community Hype",
+      "description":
+          "A well-known community joke is that the game might get a 'surprise' release on April Fools' Day. Every year on this day, community anticipation and discussion reach a new peak.",
+      "type": "Community",
+      "source": "https://www.reddit.com/r/Silksong/",
+      "category": "expectation"
+    },
+    {
+      "id": "5",
+      "date": "2023-05-10",
+      "title": "Game Delay Announcement",
+      "description":
+          "Matthew Griffin, head of marketing and publishing at Team Cherry, confirmed that Silksong was originally planned for release in the first half of 2023 but was delayed to ensure quality.",
+      "type": "Development Update",
+      "source": "https://twitter.com/griffinmatta/status/1656093223819149312",
+      "category": "release_date"
+    },
+    {
+      "id": "4",
+      "date": "2022-06-12",
+      "title": "Xbox & Bethesda Games Showcase 2022",
+      "description":
+          "After a long absence, Silksong reappeared at the Xbox & Bethesda Games Showcase with a new trailer. It was also confirmed that the game would be available on Xbox Game Pass on day one.",
+      "type": "Trailer",
+      "source": "https://www.youtube.com/watch?v=JSfuFlhsxT4",
+      "category": "announcement"
+    },
+    {
+      "id": "3",
+      "date": "2019-12-31",
+      "title": "EDGE Magazine Feature",
+      "description":
+          "EDGE Magazine published an exclusive feature on Silksong, revealing new game details, enemies, and mechanics. This was a significant information update after a long period of silence.",
+      "type": "Developer Update",
+      "source":
+          "https://www.gamesradar.com/edge-magazine-hollow-knight-silksong-devs-talk-new-world-new-hero-and-the-challenges-of-a-sequel/",
+      "category": "development"
+    },
+    {
+      "id": "2",
+      "date": "2019-06-11",
+      "title": "E3 2019 Nintendo Treehouse Live",
+      "description":
+          "During the Nintendo Treehouse Live event at E3, official gameplay of Silksong was showcased, providing a deeper look at the gameplay mechanics. A playable demo was also available at the event.",
+      "type": "Gameplay Showcase",
+      "source": "https://www.youtube.com/watch?v=c2-cboG-f-w",
+      "category": "gameplay"
+    },
+    {
+      "id": "1",
+      "date": "2019-02-14",
+      "title": "Hollow Knight: Silksong Revealed",
+      "description":
+          "Team Cherry officially announced the sequel to Hollow Knight, 'Silksong,' and released its first trailer. Originally planned as a DLC for Hollow Knight, it evolved into a full-fledged sequel.",
+      "type": "Announcement",
+      "source":
+          "https://www.teamcherry.com.au/blog/hollow-knight-silksong-revealed",
+      "category": "announcement"
+    },
+  ];
+
+  // Simula requisição HTTP
+  Future<List<TimelineItem>> fetchTimeline() async {
+    await Future.delayed(const Duration(milliseconds: 500)); // simula delay
+    return _data.map((json) => TimelineItem.fromJson(json)).toList();
+  }
+}
