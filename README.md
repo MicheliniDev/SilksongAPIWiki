@@ -14,7 +14,7 @@ Um projeto de aplicativo mobile utilizando a API de SIlksong
 
   - [Home](https://github.com/MicheliniDev/SilksongAPIWiki/wiki)
   
-  - [Acesso e código da API](https://github.com/MicheliniDev/SilksongAPIWiki/wiki/API-e-Exibi%C3%A7%C3%A3o-Din%C3%A2mica)
+  - [Acesso e código da API](https://github.com/MicheliniDev/SilksongAPIWiki/wiki/Acesso-e-c%C3%B3digo-da-API)
 
   - [Classe ApiService](https://github.com/MicheliniDev/SilksongAPIWiki/wiki/Classe-ApiService)
     
