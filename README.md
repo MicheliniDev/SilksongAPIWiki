@@ -12,7 +12,7 @@ Um projeto de aplicativo mobile que serve como guia de speedrun para o jogo, tam
 [Link da API](https://www.hollowknightsilksong.org/developers#)
 <br> <br>
 
-##Links da Wiki:##
+## Links da Wiki: 
   - [Home](https://github.com/MicheliniDev/SilksongAPIWiki/wiki)
   - [Acesso e código da API](https://github.com/MicheliniDev/SilksongAPIWiki/wiki/Acesso-e-c%C3%B3digo-da-API)
   - [Classe ApiService](https://github.com/MicheliniDev/SilksongAPIWiki/wiki/Classe-ApiService)
