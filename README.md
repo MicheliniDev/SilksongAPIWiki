@@ -1,9 +1,7 @@
-<<<<<<< HEAD
-# mobilesilksong
+# Wiki Speedrun Silksong
 
-A new Flutter project.
+## Integrantes
 
-## Getting Started
 
 This project is a starting point for a Flutter application.
 
