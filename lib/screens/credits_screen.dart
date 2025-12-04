@@ -7,11 +7,11 @@ class CreditsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Créditos da API')),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
+      body: const Padding(
+        padding: EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: const [
+          children: [
             Text(
               'API: Hollow Knight Silksong Timeline',
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
