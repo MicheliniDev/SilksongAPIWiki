@@ -3,17 +3,16 @@ import '../models/timeline_item.dart';
 import '../services/api_service.dart';
 import 'credits_screen.dart';
 import 'package:url_launcher/url_launcher.dart';
+import '../widgets/app_background.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
-
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
 class _HomeScreenState extends State<HomeScreen> {
   final ApiService apiService = ApiService();
-
   List<TimelineItem> timelineItems = [];
   List<TimelineItem> filteredItems = [];
   String searchQuery = '';
@@ -30,81 +29,92 @@ class _HomeScreenState extends State<HomeScreen> {
       timelineItems = items;
       filteredItems = items;
     });
-
-    // Debug: imprime os títulos no console para conferir
-    print(items.map((e) => e.title).toList());
   }
 
   void filterItems(String query) {
-    final filtered = timelineItems
-        .where((item) =>
-            item.title.toLowerCase().contains(query.toLowerCase()) ||
-            item.category.toLowerCase().contains(query.toLowerCase()))
-        .toList();
     setState(() {
-      filteredItems = filtered;
       searchQuery = query;
+      filteredItems = timelineItems.where((item) {
+        final text = '${item.title} ${item.category}'.toLowerCase();
+        return text.contains(query.toLowerCase());
+      }).toList();
     });
   }
 
   void openSource(String url) async {
     final uri = Uri.parse(url);
-    if (await canLaunchUrl(uri)) {
-      await launchUrl(uri);
-    } else {
+    if (!await launchUrl(uri)) {
       ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Não foi possível abrir o link')));
+        const SnackBar(content: Text('Não foi possível abrir o link')),
+      );
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Hollow Knight: Silksong'),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.info_outline),
-            onPressed: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => const CreditsScreen()));
-            },
-          )
-        ],
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(12.0),
-        child: Column(
-          children: [
-            TextField(
-              decoration: const InputDecoration(
-                  labelText: 'Pesquisar por título ou categoria',
-                  border: OutlineInputBorder(),
-                  prefixIcon: Icon(Icons.search)),
-              onChanged: filterItems,
+    return AppBackground(
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+        appBar: AppBar(
+          backgroundColor: Colors.red, // 🔴 AppBar vermelha
+          elevation: 0,
+          iconTheme: const IconThemeData(
+            color: Colors.white, // ícones brancos
+          ),
+          titleTextStyle: const TextStyle(
+            color: Colors.white,
+            fontSize: 20,
+          ),
+          title: const Text('Silksong Timeline'),
+          actions: [
+            IconButton(
+              icon: const Icon(Icons.info_outline, color: Colors.white),
+              onPressed: () => Navigator.push(
+                context,
+                MaterialPageRoute(builder: (_) => const CreditsScreen()),
+              ),
             ),
-            const SizedBox(height: 12),
+          ],
+        ),
+        body: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(14),
+              child: TextField(
+                onChanged: filterItems,
+                style: const TextStyle(color: Colors.black87),
+                decoration: InputDecoration(
+                  hintText: 'Buscar...',
+                  hintStyle: const TextStyle(color: Colors.black54),
+                  prefixIcon: const Icon(Icons.search, color: Colors.black54),
+                  filled: true,
+                  fillColor: Colors.white,
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(14),
+                  ),
+                ),
+              ),
+            ),
             Expanded(
-              child: filteredItems.isEmpty
-                  ? const Center(child: Text('Nenhum item encontrado'))
-                  : ListView.builder(
-                      itemCount: filteredItems.length,
-                      itemBuilder: (context, index) {
-                        final item = filteredItems[index];
-                        return Card(
-                          elevation: 3,
-                          margin: const EdgeInsets.symmetric(vertical: 6),
-                          child: ListTile(
-                            title: Text(item.title),
-                            subtitle: Text('${item.date} • ${item.category}'),
-                            trailing: const Icon(Icons.open_in_new),
-                            onTap: () => openSource(item.source),
-                          ),
-                        );
-                      },
+              child: ListView.builder(
+                itemCount: filteredItems.length,
+                itemBuilder: (_, i) {
+                  final item = filteredItems[i];
+                  return Card(
+                    child: ListTile(
+                      leading:
+                          const Icon(Icons.bookmark, color: Colors.redAccent),
+                      title: Text(item.title),
+                      subtitle: Text(item.description),
+                      trailing: IconButton(
+                        icon: const Icon(Icons.open_in_new,
+                            color: Colors.redAccent),
+                        onPressed: () => openSource(item.source),
+                      ),
                     ),
+                  );
+                },
+              ),
             ),
           ],
         ),

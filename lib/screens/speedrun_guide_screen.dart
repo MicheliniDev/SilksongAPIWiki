@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../widgets/app_background.dart';
 
 class SpeedrunGuideScreen extends StatelessWidget {
   const SpeedrunGuideScreen({super.key});
@@ -6,7 +7,7 @@ class SpeedrunGuideScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 2, 
+      length: 2,
       child: Scaffold(
         appBar: AppBar(
           title: const Text('Guia de Speedrun'),
@@ -17,13 +18,14 @@ class SpeedrunGuideScreen extends StatelessWidget {
             ],
           ),
         ),
-        body: const TabBarView(
-          children: [
-            // Subpage 1: Strats
-            StratsView(),
-            // Subpage 2: Rotas
-            RoutesView(),
-          ],
+        body: AppBackground(
+          imageOpacity: 0.07,
+          child: const TabBarView(
+            children: [
+              StratsView(),
+              RoutesView(),
+            ],
+          ),
         ),
       ),
     );
@@ -40,16 +42,16 @@ class StratsView extends StatelessWidget {
       children: const [
         Card(
           child: ListTile(
-            leading: Icon(Icons.bug_report, color: Colors.deepPurple),
+            leading: Icon(Icons.bolt, color: Colors.redAccent),
             title: Text('Needle Skip'),
-            subtitle: Text('Use the needle lunge to bypass the gate in Moss Grotto.'),
+            subtitle: Text('Use the needle lunge to bypass Moss Grotto gate.'),
           ),
         ),
         Card(
           child: ListTile(
-            leading: Icon(Icons.air, color: Colors.deepPurple),
+            leading: Icon(Icons.auto_fix_high, color: Colors.redAccent),
             title: Text('Bomb Pogo'),
-            subtitle: Text('Bounce off enemy bombs to gain vertical height early.'),
+            subtitle: Text('Bounce on bombs to gain early vertical height.'),
           ),
         ),
       ],
@@ -67,16 +69,16 @@ class RoutesView extends StatelessWidget {
       children: const [
         Card(
           child: ListTile(
-            leading: Icon(Icons.timer, color: Colors.redAccent),
+            leading: Icon(Icons.timer, color: Colors.red),
             title: Text('Any% NMG'),
-            subtitle: Text('Estimated time: 45m. Focuses on critical path only.'),
+            subtitle: Text('Estimated time: 45m. Critical path only.'),
           ),
         ),
         Card(
           child: ListTile(
-            leading: Icon(Icons.check_circle_outline, color: Colors.green),
+            leading: Icon(Icons.check_circle, color: Colors.redAccent),
             title: Text('100% All Tools'),
-            subtitle: Text('Estimated time: 3h 20m. Collects all tools and rosaries.'),
+            subtitle: Text('Estimated time: 3h 20m. Full completion route.'),
           ),
         ),
       ],
