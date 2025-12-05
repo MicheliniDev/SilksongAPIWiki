@@ -6,7 +6,6 @@ Igor Cafazzi R. da Silva
 
 Igor Michelini Pereira
 
-
 ## SilksongAPIWiki
 Um projeto de aplicativo mobile que serve como guia de speedrun para o jogo, também utilizando a API de SIlksong. <br> <br>
 [Link da API](https://www.hollowknightsilksong.org/developers#)
