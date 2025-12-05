@@ -1,15 +1,13 @@
 # Wiki Speedrun Silksong
 
 ## Integrantes
-
-Igor Cafazzi R. da Silva
-
-Igor Michelini Pereira
+- **Igor Cafazzi R. da Silva**
+- **Igor Michelini Pereira**
 
 ## SilksongAPIWiki
-Um projeto de aplicativo mobile que serve como guia de speedrun para o jogo, também utilizando a API de SIlksong. <br> <br>
+Um projeto de aplicativo mobile que serve como guia de speedrun para o jogo, também utilizando a API de SIlksong. <br>
 [Link da API](https://www.hollowknightsilksong.org/developers#)
-<br> <br>
+<br> 
 
 ## Links da Wiki
 
