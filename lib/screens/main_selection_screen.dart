@@ -10,7 +10,7 @@ class MainSelectionScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Silksong Companion'),
+        title: const Text('Silksong API Wiki'),
       ),
       body: AppBackground(
         imageOpacity: 0.07,

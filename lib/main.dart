@@ -11,7 +11,7 @@ class SilksongApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Silksong Companion',
+      title: 'Silksong API Wiki',
       theme: ThemeData(
         brightness: Brightness.light, // TEMA CLARO
 
